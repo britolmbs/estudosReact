@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './Main.css';
 
 export default class Main extends Component {
    state ={
@@ -14,9 +15,9 @@ export default class Main extends Component {
 
         <div className="main">
             <h1>Lista de tarefas</h1>
-            <h2>{novaTarefa}</h2>
+            <h2></h2>
             <form action='#'>
-                <input onChange={this.inputMudou} type="text" />
+                <input onChange={this.handleChange} type="text" />
                 <button type="submit">Enviar</button>
             </form>
 

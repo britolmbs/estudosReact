@@ -58,3 +58,7 @@ background: #51c5de;
 .tarefas li:hover .close {
     color: #000;
 }
+.tarefas li span {
+    display: flex;
+    align-items: center;
+}

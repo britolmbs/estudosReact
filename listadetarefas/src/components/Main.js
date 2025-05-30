@@ -27,9 +27,23 @@ export default class Main extends Component {
     
         });
     }
+    handleDelete = (e, index) => {
+    const { tarefas} = this.state;
+    const novasTarefas = [ ...tarefas];
+    novasTarefas.splice(index, 1);
+
+    this.setState({
+        tarefas: [...novasTarefas],
+
+    });
+    }
+    handleEdit = (e, index) => {
+
+    }
+
     render() {
         const { novaTarefa, tarefas } = this.state;
-
+        return(
         <div className="main">
             <h1>Lista de tarefas</h1>
             <h2></h2>
@@ -45,13 +59,14 @@ export default class Main extends Component {
                     <li key={tarefa}>
                         {tarefa}
                         <span>
-                            <FaEdit className="edit" />
-                            <FaWindowClose className="close" />
+                            <FaEdit onClick={(e) => this.handleEdit(e, )} className="edit" />
+                            <FaWindowClose onClick={(e) => this.handleDelete(e, )} className="close" />
                         </span>
                         </li>
                 ))}
             </ul>
 
         </div>
+        )
     }
 }

@@ -1,5 +1,8 @@
 import React from "react";
+import { Title } from "./styled";
 
 export default function Login() {
-    return <h1>Login</h1>
+    return <>
+    <Title>Login</Title>
+    </> 
 }

@@ -1,12 +1,14 @@
-import React from "react";
-import Login from "./pages/login";
-import GlobalStyled from "./styles/GlobalStyled";
+import React from 'react';
+import Login from './pages/login';
+import GlobalStyled from './styles/GlobalStyled';
+import Header from './components/Header';
 
 function App() {
   return (
     <>
-    <GlobalStyled />
-    <Login />
+      <Header />
+      <GlobalStyled />
+      <Login />
     </>
   );
 }

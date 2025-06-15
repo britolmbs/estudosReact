@@ -1,20 +1,21 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate, useLocation } from 'react-router-dom'; // Adicionado useLocation
 import PropTypes from 'prop-types';
 
 export default function MyRoute({ component: Component, isClosed, ...rest }) {
+  const location = useLocation(); // Obtém a localização atual
   const isLoggedId = false;
 
   if (isClosed && !isLoggedId) {
     return (
-      <Redirect
-        to={{ pathname: '/login', state: { prevPath: rest.location.pathname } }}
+      <Navigate
+        to={{ pathname: '/login', state: { prevPath: location.pathname } }}
       />
     );
   }
 
   // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Route {...rest} component={Component} />;
+  return <Route {...rest} element={<Component />} />;
 }
 
 MyRoute.defaultProps = {

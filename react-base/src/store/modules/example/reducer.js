@@ -12,11 +12,11 @@ export default function (state = initialState, action) {
     }
 
     case type.BOTAO_CLICADO_REQUEST: {
-     return state;
+      return state;
     }
 
     case type.BOTAO_CLICADO_FAILURE: {
-     return state;
+      return state;
     }
 
     default: {

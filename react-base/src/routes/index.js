@@ -16,7 +16,7 @@ export default function RoutesComponent() {
       <MyRoute exact path="/aluno/:id/edit" Component={Aluno} isClosed />
       <MyRoute exact path="/aluno" Component={Aluno} isClosed />
       <MyRoute exact path="/fotos/:id" Component={Fotos} isClosed />
-      <MyRoute exact path='/login/' Component={Login} isClosed={false} />
+      <MyRoute exact path="/login/" Component={Login} isClosed={false} />
       <MyRoute exact path="/register/" Component={Register} isClosed={false} />
       <MyRoute path="*" Component={Page404} />
     </Routes>

@@ -42,7 +42,7 @@ list-style: none;
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 480px;
   background: #fff;
   margin: 30px auto;
   border-radius: 4px;

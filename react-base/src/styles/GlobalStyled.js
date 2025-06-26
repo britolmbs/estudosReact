@@ -28,6 +28,10 @@ color: #fff;
 padding: 10px 20px;
 boder-radius: 4px;
 font-weight: 700;
+trasition: all 300ms;
+}
+button:hover {
+filter: brightness(75%);
 }
 
 a {

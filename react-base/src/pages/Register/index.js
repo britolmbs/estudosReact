@@ -1,43 +1,48 @@
 import React, { useState } from 'react';
 import { Container } from '../../styles/GlobalStyled';
 import { Form } from './styled';
-import { toast } from "react-toastify"
-import { isemail} from "validator";
-import axios from '../../services/axios'
+import { toast } from 'react-toastify';
+import { isemail } from 'validator';
+import axios from '../../services/axios';
 import { get } from 'lodash';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nome, setNome] = useState('');
-   async function handleSubmit (e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     let formErrors = false;
 
-    if(nome.length < 3 || nome.length > 255) {
-        formErrors = true;
-        toast.error("Nome deve conter 3 a 255 caracteres");
- }
+    if (nome.length < 3 || nome.length > 255) {
+      formErrors = true;
+      toast.error('Nome deve conter 3 a 255 caracteres');
+    }
 
- if(!isemail(email)){
-    formErrors = true;
-    toast.error('email invalido');
- }
+    if (!isemail(email)) {
+      formErrors = true;
+      toast.error('email invalido');
+    }
 
- if(password.length < 6 || password.length> 50) {
-    formErrors = true;
-    toast.error("Senha deve conter 6 a 50 caracteres");
- }
- if(formErrors) return;
+    if (password.length < 6 || password.length > 50) {
+      formErrors = true;
+      toast.error('Senha deve conter 6 a 50 caracteres');
+    }
+    if (formErrors) return;
 
- try {
-    const response = await axios.post('/Users/', {
-        nome, password, email
-    });
- } catch (e) {
-    const status = get()
- }
+    try {
+      await axios.post('/Users/', {
+        nome,
+        password,
+        email,
+      });
 
+      toast.success('Login criado');
+      history.push('/login');
+    } catch (err) {
+      const errors = get(err, 'response.data.errors', []);
+      errors.map((error) => toast.error(error));
+    }
   }
   return (
     <Container>

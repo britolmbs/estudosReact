@@ -1,40 +1,52 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Container } from '../../styles/GlobalStyled';
 import { Form } from './styled';
 import { toast } from 'react-toastify';
 import { isemail } from 'validator';
+import * as actions from '../../store/modules/auth/actions';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let formErrors = false;
 
-    if(!isemail(email)) {
+    if (!isemail(email)) {
       formErrors = true;
       toast.error('E-mail inválido');
     }
-    
-    if (password.length < 6 || password.length > 50){
+
+    if (password.length < 6 || password.length > 50) {
       formErrors = true;
       toast.error('senha inválida');
     }
     if (formErrors) return;
 
-  }
+    dispatch(actions.loginRequest({email, password}));
+  };
   return (
     <Container>
       <h1>Login</h1>
 
       <Form onSubmit={handleSubmit}>
-        <input type='email' value={email} onChange={e => setEmail(e.target.value)}
-        placerholder="Digite seu email" />
-        <input type='password' value={password} onChange={e => setPassword(e.target.value)}
-      placerholder="Digite sua Senha" />
-      <button type="submit">Entrar</button>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Digite seu email"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Digite sua Senha"
+        />
+        <button type="submit">Entrar</button>
       </Form>
     </Container>
   );

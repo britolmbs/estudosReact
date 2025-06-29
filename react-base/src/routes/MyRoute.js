@@ -3,7 +3,7 @@ import { Route, Navigate, useLocation } from 'react-router-dom'; // Adicionado u
 import PropTypes from 'prop-types';
 
 export default function MyRoute({ component: Component, isClosed, ...rest }) {
-  const location = useLocation(); // Obtém a localização atual
+  const location = useLocation();
   const isLoggedId = false;
 
   if (isClosed && !isLoggedId) {

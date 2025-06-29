@@ -5,12 +5,14 @@ import { toast } from 'react-toastify';
 import { isemail } from 'validator';
 import * as actions from '../../store/modules/auth/actions';
 import { useDispatch } from 'react-redux';
+import { get } from 'lodash';
 
-export default function Login() {
+export default function Login(props) {
   const dispatch = useDispatch();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const prevPath = get(props, 'location.state.prevPath', '/');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ export default function Login() {
     }
     if (formErrors) return;
 
-    dispatch(actions.loginRequest({email, password}));
+    dispatch(actions.loginRequest({ email, password, prevPath }));
   };
   return (
     <Container>

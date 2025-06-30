@@ -4,6 +4,7 @@ import * as actions from './actions';
 import { all, takeLatest, call } from 'redux-saga/effects';
 import axios from '../../../services/axios';
 import history from '../../../services/history';
+import { get } from 'lodash';
 
 function* loginRequest({ payload }) {
   try {
@@ -18,4 +19,14 @@ function* loginRequest({ payload }) {
     yield put(actions.loginFailure());
   }
 }
-export default all([takeLatest(types.LOGIN_REQUEST, loginRequest)]);
+
+function persistRehydrate({ payload }) {
+  const token = get(payload, 'auth.token', '');
+  if (!token) return;
+  axios.defaults.headers.Authorization = `Bearer ${token}`;
+}
+
+export default all([
+  takeLatest(types.LOGIN_REQUEST, loginRequest),
+  takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
+]);

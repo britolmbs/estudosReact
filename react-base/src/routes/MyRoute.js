@@ -1,15 +1,15 @@
 import React from 'react';
-import { Route, Navigate, useLocation } from 'react-router-dom'; // Adicionado useLocation
+import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export default function MyRoute({ component: Component, isClosed, ...rest }) {
-  const location = useLocation();
-  const isLoggedId = false;
+  const isLoggedId = useSelector((state) => state.auth.isLoggedId);
 
   if (isClosed && !isLoggedId) {
     return (
-      <Navigate
-        to={{ pathname: '/login', state: { prevPath: location.pathname } }}
+      <Redirect
+        to={{ pathname: '/login', state: { prevPath: rest.location.pathname } }}
       />
     );
   }

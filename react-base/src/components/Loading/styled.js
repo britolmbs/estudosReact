@@ -20,4 +20,7 @@ height: 100%;
 z-index: 1;
 backgroud: rgba(0, 0, 0, 0.8);
 }
+span{
+z-index:2;
+}
 `;

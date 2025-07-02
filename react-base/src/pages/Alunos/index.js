@@ -5,6 +5,7 @@ import { AlunoContainer, ProfilePicture } from './styled';
 import { get } from 'lodash';
 import { FaEdit, FaUserCircle, FaWindowClose } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/Loading';
 
 export default function Alunos() {
   const [alunos, setAlunos] = useState([]);
@@ -17,6 +18,7 @@ export default function Alunos() {
   }, []);
   return (
     <Container>
+      <Loading isLoading />
       <h1>Alunos</h1>
       <AlunoContainer>
         {alunos.map((aluno) => (

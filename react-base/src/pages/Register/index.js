@@ -32,7 +32,7 @@ export default function Register() {
     }
     if (formErrors) return;
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       await axios.post('/Users/', {
         nome,
@@ -46,8 +46,8 @@ export default function Register() {
     } catch (err) {
       const errors = get(err, 'response.data.errors', []);
       errors.map((error) => toast.error(error));
-        setIsLoading(false);
-    } 
+      setIsLoading(false);
+    }
   }
   return (
     <Container>

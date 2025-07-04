@@ -9,10 +9,10 @@ import * as actions from '../../store/modules/auth';
 
 export default function Register() {
   const dispatch = useDispatch();
-  const id = useSelector(state => state.auth.user.id);
-  const nomeStored = useSelector(state => state.auth.user.nome);
-  const emailStored = useSelector(state => state.auth.user.email);
-  const isLoading = useSelector(state => state.auth.isLoading);
+  const id = useSelector((state) => state.auth.user.id);
+  const nomeStored = useSelector((state) => state.auth.user.nome);
+  const emailStored = useSelector((state) => state.auth.user.email);
+  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,12 +44,12 @@ export default function Register() {
     }
     if (formErrors) return;
 
-    dispatch(actions.);
+    dispatch(actions.registerRequest({ nome, email, password, id }));
   }
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>{id ? 'Editar dados' :'Crie sua conta'}</h1>
+      <h1>{id ? 'Editar dados' : 'Crie sua conta'}</h1>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">
           Nome:

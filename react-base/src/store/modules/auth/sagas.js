@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import * as types from '../types';
 import * as actions from './actions';
-import { all, takeLatest, call } from 'redux-saga/effects';
+import { all, takeLatest, call, put } from 'redux-saga/effects';
 import axios from '../../../services/axios';
 import history from '../../../services/history';
 import { get } from 'lodash';
@@ -26,8 +26,30 @@ function persistRehydrate({ payload }) {
   axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
-function registerRequest({ payload }) {
+function* registerRequest({ payload }) {
   const { id, nome, email, password } = payload;
+
+  try {
+    if (id) {
+      yield call(axios.put, '/users', {
+        email,
+        nome,
+        password: password || undefined,
+      });
+      toast.success('Usuario alterado com sucesso');
+      yield put(actions.registerSuccess({ nome, email, password }));
+    }
+  } catch (e) {
+    const errors = get(e, 'response.data.errors', []);
+    const status = get(e, 'response.status', 0);
+
+    if (errors.length > 0) {
+      errors.map((error) => toast.error(error));
+    } else {
+      toast.error(`error : ${status}`);
+    }
+    yield put(actions.registerFailure());
+  }
 }
 
 export default all([

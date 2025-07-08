@@ -31,14 +31,20 @@ export default function Alunos() {
   const handleDelete = async (e, id, index) => {
     e.persist();
     try{
+      setIsLoading(true);
       await axios.delete(`/alunos/${id}`);
      const novosAlunos = {...alunos};
      novosAlunos.splice(index, 1);
      setAlunos(novosAlunos);
-     
+      setIsLoading(false);
     }catch(err){
-      const errors = get(err, 'response.data.errors', []);
-      errors.map(error => toast.error(error));
+      const status = get(err, 'response.status', 0);
+     
+      if (status === 401) {
+        toast.error("Você precisa fazer login");
+        return;
+      }
+      setIsLoading(false);
     }
   };
   return (

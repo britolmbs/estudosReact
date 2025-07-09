@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '../../styles/GlobalStyled';
 import axios from '../../services/axios';
-import { AlunoContainer, ProfilePicture } from './styled';
+import { AlunoContainer, ProfilePicture, NovoAluno } from './styled';
 import { get } from 'lodash';
 import { FaEdit, FaUserCircle, FaWindowClose, FaExclamation } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -51,6 +51,8 @@ export default function Alunos() {
     <Container>
       <Loading isLoading={isLoading} />
       <h1>Alunos</h1>
+
+      <NovoAluno to='/aluno/'>Novo Aluno </NovoAluno>
       <AlunoContainer>
         {alunos.map((aluno, index) => (
           <div key={String(aluno.id)}>

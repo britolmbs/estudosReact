@@ -22,6 +22,6 @@ export const ProfilePicture = styled.div`
 `;
 
 export const NovoAluno = styled(Link)`
-display: block;
-padding: 20px 0 10px 0;
+  display: block;
+  padding: 20px 0 10px 0;
 `;

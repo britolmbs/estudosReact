@@ -7,6 +7,8 @@ import { isEmail, isInt, isFloat } from 'validator';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading';
 import axios from '../../services/axios';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Aluno({ match }) {
   const id = get(match, 'params.id', 0);
@@ -17,6 +19,8 @@ export default function Aluno({ match }) {
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id) return;
@@ -48,7 +52,7 @@ export default function Aluno({ match }) {
     }
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formErrors = false;
 
@@ -79,6 +83,44 @@ export default function Aluno({ match }) {
     if (!isFloat(String(altura))) {
       toast.error('Altura invalida');
       formErrors = true;
+    }
+
+    if (!formErrors) return;
+
+    try {
+      setIsLoading(true);
+      if (id) {
+        await axios.put(`/alunos/${id}`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          altura,
+          peso,
+        });
+        toast.success('Aluno Editado com sucesso');
+      } else {
+        const { data } = await axios.post(`/alunos/`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        toast.success('Aluno criado com sucesso');
+        history.push(`/aluno/${data.id}/edit`);
+      }
+      setIsLoading(false);
+    } catch (err) {
+      const status = get(err, 'response.status', 0);
+      const data = get(err, 'response.data', {});
+      const errors = get(data, 'errors', []);
+
+      if (errors.length > 0) {
+        errors.map((error) => toast.error(error));
+      }
+      if (status === 401) dispatch(actions.loginFailure());
     }
   };
 

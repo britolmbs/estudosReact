@@ -13,3 +13,7 @@ export const Form = styled.form`
     padding: 0 10px;
   }
 `;
+
+export const ProfilePicture = styled.div`{
+
+}`;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '../../styled/GlobalStyled';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Form, ProfilePicture } from './styled';
+import { Form, ProfilePicture, Tittle } from './styled';
 import { isEmail, isInt, isFloat } from 'validator';
 import { toast } from 'react-toastify';
 import Loading from '../../components/Loading';
@@ -131,7 +131,7 @@ export default function Aluno({ match }) {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>{id ? 'Editar aluno' : 'Novo Aluno'}</h1>
+      <Tittle>{id ? 'Editar aluno' : 'Novo Aluno'}</Tittle>
 
       {id && (
         <ProfilePicture>

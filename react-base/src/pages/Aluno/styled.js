@@ -21,7 +21,7 @@ export const ProfilePicture = styled.div`{
   align-items: center;
   padding: 0 0 20px;
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
   
   img{
   width: 180px;
@@ -41,4 +41,10 @@ export const ProfilePicture = styled.div`{
   height: 36px;
   border-radius: 50%;
   }
+
 }`;
+
+export const Tittle = styled.h1`
+text-aling: center;
+`;
+

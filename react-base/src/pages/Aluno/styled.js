@@ -15,7 +15,7 @@ export const Form = styled.form`
   }
 `;
 
-export const ProfilePicture = styled.div`{
+export const ProfilePicture = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,9 +42,8 @@ export const ProfilePicture = styled.div`{
   border-radius: 50%;
   }
 
-}`;
-
-export const Tittle = styled.h1`
-text-aling: center;
 `;
 
+export const Tittle = styled.h1`
+  text-aling: center;
+`;

@@ -19,10 +19,10 @@ export const Form = styled.form`
     boder-radius: 50%;
     overflow: hidden;
   }
-    img {
+  img {
     width: 180px;
     heigth: 180px;
-    }
+  }
   input {
     display: none;
   }

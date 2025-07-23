@@ -7,6 +7,7 @@ export const Menu = () => {
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><a href="/about">About</a></li>
+                <li><Link to='/post'>Post</Link></li>
             </ul>
         </nav>
     )

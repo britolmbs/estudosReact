@@ -14,8 +14,8 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/about' element={<About />} />
-      <Route path='post' element={<Post />} />
-    </Routes>
+      <Route path='/post/:id' element={<Post />} />    </Routes>
+      <Route path='/post' element={<Post />} />
     </BrowserRouter>
   </StrictMode>,
 )

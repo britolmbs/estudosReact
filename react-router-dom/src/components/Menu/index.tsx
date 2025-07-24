@@ -9,6 +9,9 @@ export const Menu = () => {
                 <li><a href="/about">About</a></li>
                 <li><Link to='/post'>Post</Link></li>
                 <li><Link to='/post/10'>Posts 10</Link></li>
+                <li>
+                    <Link to='/redirect'>Redirect</Link>
+                </li>
             </ul>
         </nav>
     )

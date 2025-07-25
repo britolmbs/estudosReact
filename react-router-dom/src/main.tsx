@@ -16,10 +16,13 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/about' element={<About />} />
-      <Route path='/post/:id' element={<Post />} />    </Routes>
+      <Route path='/post' element={<Post />}> 
+        <Route path=':id' element={<div>oi</div>} />
+      </Route>   
       <Route path='/post' element={<Post />} />
       <Route path='/redirect' element={<Redirect />} />
       <Route path='*' element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   </StrictMode>,
 )
